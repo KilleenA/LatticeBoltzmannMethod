@@ -9,7 +9,7 @@
 
 //=============================== PARAMETER DEFINITIONS ==========================//
 
-int L = 1280; // If Q=7 this must be an even number!!
+int L = 1280; // If Q=7 this must be an even number!
 int rows = L;
 int cols = 100;
 const int Q = 7; // Which lattice type to use (7 or 9)
@@ -17,24 +17,17 @@ const int sweeps = 50e3; // Number of time-steps to perform
 const int save_sweep = 100; // How often to save data
 const double tol = 1e-10;
 const double init_rad = 25.; // Radius of cell layer (if using circular geometry)
-const double U_max = 0.; // Maximum allowed active velocity
 const double pi = M_PI;
 const double density = 0.1; // Average initial fluid density
 const double rho_star = 0.15; // Critical density
 double rho_c = 0.05; // Threshold density (Minimum density allowed at given site)
 const double sigma = 0.01; // Noise strength
 const double tau = 1.; // Relaxation time
-const double A = 10; // Strength of active propulsion force
-const double B = 0.1; // Strength of desnity dependance on active propulsion force
 double g = 0.001; // Strength of substrate friction force
-const double G = 0.; // Shan-Chen interaction strength
 double P_division = 0.001; // Division rate
-double l_prolif = 50; // Proliferation length-scale
-const double psi_solid = 1. - exp(-density); // Pseudo-potential for solid nodes
 const int BB_INTERFACE = 1; // Switch for implementing interface bounce-back
 const int PERIODIC = 0; // Switch for implementing periodic boundary conditions
 const int DOMAIN_ADAPTION = 1; // Switch for implementing variable domain size
-double delta = 1; // Proliferation exponent
 
 //===============================================================================//
 
@@ -190,7 +183,7 @@ void initialisation_circle(vector<vector<double> > &rho, vector<vector<vector<do
             {
                 rho[i][j] = dens_distrib(mt_rand);
                 int angle = vel_distrib(mt_rand);
-                v[i][j][0] = U_max*cos(angle); v[i][j][1] = U_max*sin(angle);
+                v[i][j][0] = 0.; v[i][j][1] = 0.;
             }else
             {
                 rho[i][j] = 0.;
